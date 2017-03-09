@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+   rel="stylesheet" media="screen" />
+  <title>{% block title %} Asociación de Matemáticos de Guatemala
+    {% endblock %} </title>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+    <a class="navbar-brand" href="#">AMGM</a>
+    <p class="navbar-text navbar-right">Mi usuario </p>
+  </nav>
+
+
+  <h1 class="text-info"> AMGM </h1>
+  {% if user.is_authenticated %}
+    Bienvenido {{ user.username }}
+    <a href="{% url 'logout' %}"> Salir </a>
+  {% else %}
+    <a href="{% url 'login' %}"> Ingresar {{ user.username }} </a>
+  {% endif %}
+  <div class="container">
+  {% block content %}
+  {% endblock %}
+  </div>
+  <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <p class="navbar-text navbar-right">Footer </p>
+  </nav>
+  <script src="{% static 'js/jquery-3.1.1.min.js'  %}"  ></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
